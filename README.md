@@ -9,3 +9,7 @@
 ```
 npm install 
 ```
+* 如果不能使用，请使用淘宝镜像安装
+```
+npm run serve
+```
