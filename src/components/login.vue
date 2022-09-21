@@ -35,6 +35,9 @@ export default {
   methods:{
     //登录
     postdata:function(){
+      location.href='#/mainpage'
+      /*
+      
       // eslint-disable-next-line no-unused-vars
       var password=this.password
       localStorage.setItem("usr",this.user)
@@ -45,7 +48,7 @@ export default {
         console.log(res.data.code)
            if(res.data.code==0){
              if(res.data.identify==1){
-               //学生界面
+
                localStorage.setItem("token",res.data.token);
                //未修改密码000 进行修改密码界面
               location.href='#/student_class'
@@ -70,6 +73,7 @@ export default {
         }).catch(function(err){//失败
           console.log(err);
         })
+        */
     },
 
 
@@ -81,6 +85,7 @@ export default {
 
   }
 };
+
 </script>
 <!--样式表-->
 <style>
