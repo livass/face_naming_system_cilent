@@ -10,9 +10,10 @@ import VueAxios from 'vue-axios'
 Vue.prototype.$axios = axios 
 import global_ from './components/global'//引用文件
 Vue.prototype.GLOBAL = global_//挂载到Vue实例上面
-
+import echarts from "echarts"
+Vue.prototype.$echarts = echarts
 Vue.use(VueAxios, axios)
-
+//Vue.use(echarts)
 Vue.config.productionTip = false
 
 Vue.use(ElementUI);

@@ -12,11 +12,11 @@
         <el-input v-model="newname" placeholder="请输入名字" ></el-input>
       </div>
       <div id="input_box">
-        <el-input v-model="address" placeholder="新用户地址" ></el-input>
+        <el-input v-model="address" placeholder="联系方式" ></el-input>
       </div>
       <div id="input_box">
         <el-radio v-model="identify" label="1">学生</el-radio>
-        <el-radio v-model="identify" label="2">骑手</el-radio>
+        <el-radio v-model="identify" label="2">老师</el-radio>
       </div>
     </div>
     <br /><br />

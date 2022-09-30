@@ -35,32 +35,31 @@ export default {
   methods:{
     //登录
     postdata:function(){
-      location.href='#/mainpage'
-      /*
+      //location.href='#/mainpage'
       
       // eslint-disable-next-line no-unused-vars
       var password=this.password
       localStorage.setItem("usr",this.user)
-      this.$axios.post(this.GLOBAL.config_ip+'/login1/',{//传送数据
+      this.$axios.post(this.GLOBAL.config_ip+'/login/',{//传送数据
           usr:this.user,
           pwd:this.password
         }).then((res)=>{//成功登陆
         console.log(res.data.code)
            if(res.data.code==0){
-             if(res.data.identify==1){
+             if(res.data.identify==0){
 
                localStorage.setItem("token",res.data.token);
                //未修改密码000 进行修改密码界面
-              location.href='#/student_class'
+              location.href='#/mainpage'
             }
-              else if(res.data.identify==2){
+              else if(res.data.identify==1){
                 localStorage.setItem("token",res.data.token);
-                location.href='#/rider'
+                location.href='#/mainpagestu'
               }
            else{
              //老师界面
              localStorage.setItem("token",res.data.token);
-             location.href='#/teacher'
+             location.href='#/register'
            }
         }
            else{
@@ -73,7 +72,7 @@ export default {
         }).catch(function(err){//失败
           console.log(err);
         })
-        */
+        
     },
 
 
