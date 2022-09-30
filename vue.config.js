@@ -9,7 +9,7 @@ proxyObj['/'] = {
 module.exports = {
   devServer: {
     host: '0.0.0.0',
-    public:'192.168.26.1:8080', //设置访问ip端口
+    //设置访问ip端口
     port: 8080,
     //proxy: proxyObj,
     //https: false,
