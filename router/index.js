@@ -14,6 +14,7 @@ import datashow from '@/components/datashow'
 import stutext from '@/components/mainstu/stutext'
 import namerec from '@/components/mainstu/namerec'
 import teaclass from '@/components/maintea/teaclass'
+import classdetail from '@/components/maintea/classdetail'
 
 Vue.prototype.$router = Router
 
@@ -75,6 +76,11 @@ export default new Router({
           path:'/teaclass',
           name:'teaclass',
           component:teaclass
+        },
+        {
+          path:'/classdetail',
+          name:'classdetail',
+          component:classdetail
         },
       ]
     },
