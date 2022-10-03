@@ -4,14 +4,22 @@
     <el-menu :default-openeds="[]" default-active="activeIndex"
      :router="true"
     >
-      <el-submenu index="1">
-        <template slot="title"><i class="el-icon-message"></i>信息查看</template>
+    <el-submenu index="1">
+        <template slot="title"><i class="el-icon-picture"></i>信息录入</template>
         <el-menu-item-group>
-          <el-menu-item index="mynaming" >我的点名</el-menu-item>
-          <el-menu-item index="namerec">点名记录</el-menu-item>
+          <el-menu-item index="faceimportrec" >人脸录入</el-menu-item>
+          <el-menu-item index="faceimportrec2">人脸更新</el-menu-item>
+          <el-menu-item index="onlinerec">视频录入</el-menu-item>
         </el-menu-item-group> 
       </el-submenu>
       <el-submenu index="2">
+        <template slot="title"><i class="el-icon-info"></i>信息查看</template>
+        <el-menu-item-group>
+          <el-menu-item index="mynaming" >我的点名</el-menu-item>
+          <el-menu-item index="namerec">签到记录</el-menu-item>
+        </el-menu-item-group> 
+      </el-submenu>
+      <el-submenu index="3">
         <template slot="title"><i class="el-icon-menu"></i>系统相关</template>
         <el-menu-item-group>
           <el-menu-item index="stutext">系统说明</el-menu-item>

@@ -2,10 +2,24 @@
 <div>
   <el-row :gutter="20">
   <el-col :span="2"><div class="grid-content bg-purple">
+    <el-dropdown @command="handleCommand">
+    <span class="el-dropdown-link">
+      选择第几周<i class="el-icon-arrow-down el-icon--right"></i>
+    </span>
+    <el-dropdown-menu slot="dropdown">
+      <el-dropdown-item command="1">第一周</el-dropdown-item>
+      <el-dropdown-item command="2">第二周</el-dropdown-item>
+      <el-dropdown-item command="3">第三周</el-dropdown-item>
+      <el-dropdown-item command="4">第四周</el-dropdown-item>
+      <el-dropdown-item command="6">第五周</el-dropdown-item>
+    </el-dropdown-menu>
+    </el-dropdown>
   </div></el-col>
   <el-col :span="6"><div class="grid-content bg-purple"></div></el-col>
   <el-col :span="6"><div class="grid-content bg-purple">  </div></el-col>
-  <el-col :span="6" :offset=15><div class="grid-content bg-purple"></div></el-col>
+  <el-col :span="6" :offset=15><div class="grid-content bg-purple">
+    <el-button @click="recmore" round type="primary" size="small" plain>多脸认证</el-button>
+</div></el-col>
 </el-row>
 <div>
   <p>  </p>
@@ -31,13 +45,13 @@
       width="200">
     </el-table-column>
     <el-table-column
-      prop="classid"
-      label="班级号"
+      prop="ifname"
+      label="是否点名"
       width="200">
     </el-table-column>
     <el-table-column
-      prop="weekid"
-      label="周次"
+      prop="ifrec"
+      label="是否识别成功"
       width="200">
     </el-table-column>
     <el-table-column
@@ -150,7 +164,7 @@ export default {
         aa: "bb"
       },
       data:{
-        usr:localStorage.getItem("usr")
+        stuusr:localStorage.getItem("stuusr")
       },
       licenseImageUrl:'',
     //----------------------------------
@@ -169,17 +183,18 @@ export default {
 created:function(){//获取work_name和获取work_code
     // `this` 指向 vm 实例
         this.loading=true
-        this.$axios.post(this.GLOBAL.config_ip+'/stugetname',{
+        this.$axios.post(this.GLOBAL.config_ip+'/getstuby_cw2',{
             token:localStorage.getItem("token"),
-            usr:localStorage.getItem("usr")
+            classid:localStorage.getItem("classid"),
+            weekid:localStorage.getItem("weekid")
         }).then((res)=>{
             localStorage.setItem("token",res.data.token)
-            for(let i=0;i<res.data.name_list.length;i++)
+            for(let i=0;i<res.data.stu_list.length;i++)
                 {
-                    arr1[i]=res.data.name_list[i]
+                    arr1[i]=res.data.stu_list[i]
                 }
             console.log(arr1)
-            this.tableData=Array.from(res.data.name_list)
+            this.tableData=Array.from(res.data.stu_list)
             this.loading=false
             })
 },

@@ -4,15 +4,16 @@
   <el-col :span="2"><div class="grid-content bg-purple">
   </div></el-col>
   <el-col :span="6"><div class="grid-content bg-purple"></div></el-col>
-  <el-col :span="6"><div class="grid-content bg-purple">  </div></el-col>
-  <el-col :span="6" :offset=15><div class="grid-content bg-purple"></div></el-col>
+  <el-col :span="6"><div class="grid-content bg-purple"></div></el-col>
+  <el-col :span="6"><div class="grid-content bg-purple">
+</div></el-col>
 </el-row>
 <div>
   <p>  </p>
 </div>
 <div id="link">
     <i class="el-icon-house"></i>
-<el-link type="success" href='#/login'>退出登录</el-link>
+<el-link type="primary" href='#/login'>退出登录</el-link>
 </div>
   <el-table
     :v-loading="loading"
@@ -31,14 +32,9 @@
       width="200">
     </el-table-column>
     <el-table-column
-      prop="classid"
-      label="班级号"
-      width="200">
-    </el-table-column>
-    <el-table-column
-      prop="weekid"
-      label="周次"
-      width="200">
+      prop="ifname"
+      label="是否点名"
+      width="500">
     </el-table-column>
     <el-table-column
       fixed="right"
@@ -46,16 +42,13 @@
       width="300"
     >
       <template slot-scope="scope">
-        <el-button @click="nameit(scope.$index,scope.row)" plain round type="primary" size="small">上传照片认证</el-button>
-        <el-button @click="onlinerec(scope.$index,scope.row)" plain round type="primary" size="small">视频认证</el-button>
-
+        <el-button @click="faceit(scope.$index,scope.row)" plain round type="primary" size="small">人脸录入</el-button>
+        <el-button @click="videoit(scope.$index,scope.row)" plain round type="primary" size="small">人脸视频录入</el-button>
       </template>
     </el-table-column>
   </el-table>
-
-<!-------------------------------------------上传照片对话框-------------------------------------------------------------------------------------->
-
-<el-dialog title="上传人脸点名" :visible.sync="dialogTableVisible">
+<!-------------------------------------------------人脸录入对话框------------------------------------------------------------------------------------>
+<el-dialog title="人脸头像录入" :visible.sync="dialogTableVisible">
   <el-row type="flex" class="row-bg">
   <el-col :span="12"><div class="grid-content bg-purple"></div></el-col>
   <el-col :span="12"><div class="grid-content bg-purple-light"></div>图片上传</el-col>
@@ -69,7 +62,7 @@
 <el-upload
   class="upload-demo"
   drag
-  action="http://localhost:3000/uploadpic/"
+  action="http://localhost:3000/uploadpic_tea/"
   :headers="headers"
   :data="data"
   :file-list="filelist"
@@ -103,10 +96,11 @@
 </el-row>
 </el-dialog>
 
-<!-----------------------------------------------------------------上传照片对话框--------------------------------------------------------------->
 
-<!-----------------------------------------------------------------视频在线认证----------------------------------------------------------------->
-<el-dialog title="视频在线人脸点名" :visible.sync="dialogTableVisible2">
+<!-------------------------------------------------对话框----------------------------------------------------------------------------------->
+
+<!--------------------------------------------------视频在线录入------------------------------------------------------------------------------------>
+<el-dialog title="视频在线人脸录入" :visible.sync="dialogTableVisible2">
 <template>
   <div class="camera_outer">
     <video id="videoCamera" :width="videoWidth" :height="videoHeight" autoplay></video>
@@ -124,9 +118,7 @@
 </template>
     
 </el-dialog>
-
-<!-----------------------------------------------------------------视频在线认证----------------------------------------------------------------->
-
+<!--------------------------------------------------视频在线录入------------------------------------------------------------------------------------>
 
 
   </div>
@@ -142,85 +134,85 @@ export default {
     data() {
       return {
         tableData:[],
+        //------------人脸录入----------------
         fullscreenLoading: false,
         //对话框1所需data---------------------------
         dialogTableVisible:false,
         filelist:[],
         headers: {
         aa: "bb"
-      },
-      data:{
-        usr:localStorage.getItem("usr")
-      },
-      licenseImageUrl:'',
-    //----------------------------------
-    //对话框2所需data---------------------------
-      dialogTableVisible2:false,
-      videoWidth: 250,
-      videoHeight: 350,
-      imgSrc: "",
-      thisCancas: null,
-      thisContext: null,
-      thisVideo: null,
-      openVideo:false
-    //---------------------------------------
+        },
+        data:{
+            stuusr:localStorage.getItem("stuusr")
+        },
+        licenseImageUrl:'',
+
+
+        //-----------------------------
+        //----------------视频在线----------------
+        dialogTableVisible2:false,
+        videoWidth: 250,
+        videoHeight: 350,
+        imgSrc: "",
+        thisCancas: null,
+        thisContext: null,
+        thisVideo: null,
+        openVideo:false
+        //----------------------------------
 }
 },
 created:function(){//获取work_name和获取work_code
     // `this` 指向 vm 实例
         this.loading=true
-        this.$axios.post(this.GLOBAL.config_ip+'/stugetname',{
+        this.$axios.post(this.GLOBAL.config_ip+'/getstuby_cw',{
             token:localStorage.getItem("token"),
-            usr:localStorage.getItem("usr")
+            classid:localStorage.getItem("classid"),
+            weekid:localStorage.getItem("weekid")
         }).then((res)=>{
             localStorage.setItem("token",res.data.token)
-            for(let i=0;i<res.data.name_list.length;i++)
+            for(let i=0;i<res.data.stu_list.length;i++)
                 {
-                    arr1[i]=res.data.name_list[i]
+                    arr1[i]=res.data.stu_list[i].usr
                 }
-            console.log(arr1)
-            this.tableData=Array.from(res.data.name_list)
+                console.log(arr1)
+            this.tableData=Array.from(res.data.stu_list)
             this.loading=false
             })
 },
 methods:{
-  //多脸识别
-  recmore(){
+  //人脸录入
+  faceit(index,row){
+  
     this.dialogTableVisible=true
-  },
-  //点名按钮事件
-  nameit(index,row){
-    localStorage.setItem("stuusr",arr1[index].usr)
-    this.dialogTableVisible=true
-  },
-  //视频在线识别事件
-  onlinerec(index,row){
-    this.dialogTableVisible2=true
+    localStorage.setItem("stuusr",arr1[index])
   },
 
+  videoit(index,row){
+    this.dialogTableVisible2=true
+    alert("aaa")
+  },
   //表格颜色填充
   tableRowClassName({row, rowIndex}) {
     console.log(arr1.length)
         for(let i=0;i<=arr1.length;i++){
             if(i%2==0){
                 if(rowIndex===i){
-                    return 'success-row';
+                    return 'warning-row';
                 }
             }
         }
         return '';
       },
-
-//选择周次-----------------------------------
+    
    handleCommand(command) {
         localStorage.setItem("weekid",command)
         console.log(command)
-        location. reload()
-        location.href="#/classdetail2"
+        location.reload()
+        location.href="#/stuclassdetail"
       },
 
-//-------图片上传---------------------------------------------------------------------------------------------------------
-      beforeAvatarUpload(file){
+    //图片上传-------------------------------------------------------------------------------------------
+    beforeAvatarUpload(file){
       //图片上传认证
      
     },
@@ -238,67 +230,14 @@ methods:{
 
 
     handleAvatarSuccess(res,file,fileList){
-      
       if(res.code==0){
        this.$message({
 					message: '上传成功！',
 					type: 'success'
 				});
+        this.dialogTableVisible=false
+        this.filelist=[]
       console.log(res)
-      this.$confirm('是否上传进行人脸识别, 是否继续?', '提示', {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
-          type: 'warning'
-        }).then(() => {
-          const loading = this.$loading({
-          lock: true,
-          text: 'Loading',
-          spinner: 'el-icon-loading',
-          background: 'rgba(0, 0, 0, 0.7)'
-        });
-          //axios交互
-          this.$axios.post(this.GLOBAL.config_ip+'/tearecbyusr/',{
-          name:res.name,
-          stuusr:localStorage.getItem("stuusr"),
-          classid:localStorage.getItem("classid"),
-          weekid:localStorage.getItem("weekid")
-        }).then((res1)=>{
-          console.log(res1.data.result)
-          if(res1.data.code==0){
-            this.$message({
-            type: 'success',
-            message: '识别成功!'
-          });
-          loading.close();
-          location.reload()
-          this.filelist=[],
-          this.dialogTableVisible=false
-          }
-
-          else{
-            this.$message({
-            type: 'warning',
-            message: '识别失败!'
-          });
-          loading.close();
-          this.filelist=[],
-          this.dialogTableVisible=false
-
-          }
-
-        }).catch(function(err){//失败
-          this.$message({
-            type: 'warning',
-            message: '错误!'
-          });
-        })
-        //axios交互
-        }).catch(() => {
-          this.$message({
-            type: 'info',
-            message: '已取消识别'
-          });          
-        });
       }
       
     },
@@ -317,9 +256,11 @@ methods:{
     progress(event, file, fileList){
       
     },
-//图片上传-----------------------------------------------------------------------------------------------------------
-//视频在线
-getCompetence() {
+
+    //图片上传-------------------------------------------------------------------------------------------
+
+    //视频认证---------------------------------------------------------------------------------------
+    getCompetence() {
       var _this = this;
       _this.thisCancas = document.getElementById("canvasCamera");
       _this.thisContext = this.thisCancas.getContext("2d");
@@ -409,7 +350,7 @@ getCompetence() {
       }
       return new File([u8arr], filename, { type: mime });
     }
-//视频在线
+    //视频认证---------------------------------------------------------------------------------------
 }
 }
 </script>

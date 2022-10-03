@@ -68,7 +68,7 @@ methods:{
   go_class(index){
     localStorage.setItem("classid",arr1[index]) 
     localStorage.setItem("weekid",1) 
-    location.href="#/classdetail"
+    location.href="#/stuclassdetail"
   },
 
   //表格颜色填充
@@ -77,7 +77,7 @@ methods:{
         for(let i=0;i<=arr1.length;i++){
             if(i%2==0){
                 if(rowIndex===i){
-                    return 'success-row';
+                    return 'warning-row';
                 }
             }
         }

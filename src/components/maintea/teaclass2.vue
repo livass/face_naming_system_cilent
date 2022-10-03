@@ -64,11 +64,11 @@ created:function(){//获取work_name和获取work_code
             })
 },
 methods:{
-  //抢此订单
+  //进入班级
   go_class(index){
     localStorage.setItem("classid",arr1[index]) 
     localStorage.setItem("weekid",1) 
-    location.href="#/classdetail"
+    location.href="#/classdetail2"
   },
 
   //表格颜色填充

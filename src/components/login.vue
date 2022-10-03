@@ -19,7 +19,7 @@
       <a href="http://baidu.com">修改密码</a>
     </div>
   </div>
-  
+
 </template>
 
 <script>
@@ -28,7 +28,7 @@ export default {
   data() {
     return {
       user: '',
-      password: ''
+      password: '',
     };
   },
   //服务器提交代码数据
@@ -79,9 +79,7 @@ export default {
   //注册
   register:function(){
     location.href='#/register'
-  }
-
-
+  },
   }
 };
 
@@ -154,4 +152,5 @@ body {
 #link {
   position:absolute;right:20px;bottom:20px;width:75px;border:0px solid #aaa
 }
+
 </style>

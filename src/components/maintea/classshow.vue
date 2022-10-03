@@ -68,7 +68,7 @@ methods:{
   go_class(index){
     localStorage.setItem("classid",arr1[index]) 
     localStorage.setItem("weekid",1) 
-    location.href="#/classdetail"
+    location.href="#/classshowdet"
   },
 
   //表格颜色填充
@@ -77,7 +77,7 @@ methods:{
         for(let i=0;i<=arr1.length;i++){
             if(i%2==0){
                 if(rowIndex===i){
-                    return 'success-row';
+                    return 'warning-row';
                 }
             }
         }
@@ -89,10 +89,10 @@ methods:{
 
 <style>
   .el-table .warning-row {
-    background: oldlace;
+    background: rgb(150, 119, 61);
   }
 
   .el-table .success-row {
-    background: #f0f9eb;
+    background: #ae8527;
   }
 </style>

@@ -11,7 +11,7 @@ module.exports = {
     host: '0.0.0.0',
     //设置访问ip端口
     port: 8080,
-    //proxy: proxyObj,
+    proxy: proxyObj,
     //https: false,
     //hotOnly: false,
     //disableHostCheck:true,

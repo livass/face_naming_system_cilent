@@ -20,7 +20,6 @@
 
   </div></el-col>
   <el-col :span="6" :offset=14><div class="grid-content bg-purple">
-      <el-button @click="nameitall" round type="primary" size="small" plain :disabled="isdisabled">全部点名</el-button>  
 </div></el-col>
 </el-row>
 <div>
@@ -39,26 +38,22 @@
       fixed="left"
       prop="usr"
       label="学号"
-      width="200">
+      width="300">
     </el-table-column>
     <el-table-column
       prop="usrname"
       label="学生姓名"
-      width="200">
+      width="300">
     </el-table-column>
     <el-table-column
       prop="ifname"
       label="是否点名"
-      width="500">
+      width="330">
     </el-table-column>
     <el-table-column
-      fixed="right"
-      label="操作"
-      width="300"
-    >
-      <template slot-scope="scope">
-        <el-button @click="nameit(scope.$index,scope.row)" plain round type="primary" size="small" :disabled="scope.row.ifname==1?true:false">点名</el-button>
-      </template>
+      prop="ifrec"
+      label="是否签到"
+      width="350">
     </el-table-column>
   </el-table>
   </div>
@@ -82,7 +77,7 @@ export default {
 created:function(){//获取work_name和获取work_code
     // `this` 指向 vm 实例
         this.loading=true
-        this.$axios.post(this.GLOBAL.config_ip+'/getstuby_cw',{
+        this.$axios.post(this.GLOBAL.config_ip+'/getstuby_cw2',{
             token:localStorage.getItem("token"),
             classid:localStorage.getItem("classid"),
             weekid:localStorage.getItem("weekid")
@@ -100,23 +95,17 @@ created:function(){//获取work_name和获取work_code
 methods:{
   //点名
   nameit(index,row){
-    let stuusr=arr1[index].usr
+    let usr=arr1[index].usr
     let classid=localStorage.getItem("classid")
     let weekid=localStorage.getItem("weekid")
     let usrname=arr1[index].usrname
     this.$axios.post(this.GLOBAL.config_ip+'/teanamebyusr/',{
       token:localStorage.getItem("token"),
-      stuusr:stuusr,
+      usr:usr,
       classid:classid,
       weekid:weekid,
       usrname:usrname
     }).then((res)=>{
-      if(res.data.code==1){
-        this.$message({
-            message: '人脸未录入！',
-            type: 'warning'
-          });
-      }
       if(res.data.code==0){
         this.$message({
             message: '已发布点名！',
@@ -148,7 +137,7 @@ methods:{
         localStorage.setItem("weekid",command)
         console.log(command)
         location. reload()
-        location.href="#/classdetail"
+        location.href="#/classshowdet"
       }
 }
 }

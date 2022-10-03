@@ -3,7 +3,7 @@
 <div>
 <el-row type="flex" class="row-bg">
   <el-col :span="12"><div class="grid-content bg-purple"></div></el-col>
-  <el-col :span="12"><div class="grid-content bg-purple-light"></div>人脸录入</el-col>
+  <el-col :span="12"><div class="grid-content bg-purple-light"></div>人脸更新</el-col>
   <el-col :span="12"><div class="grid-content bg-purple"></div></el-col>
 </el-row>
 
@@ -91,14 +91,14 @@ export default {
       
       if(res.code==0){
        this.$message({
-					message: '更新成功！',
+					message: '上传成功！',
 					type: 'success'
 				});
       console.log(res)
       }
       else{
         this.$message({
-					message: '更新失败!',
+					message: '上传失败!',
 					type: 'error'
 				});
       }

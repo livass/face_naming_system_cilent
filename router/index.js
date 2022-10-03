@@ -12,9 +12,19 @@ import systext from '@/components/systext'
 import mainpagestu from '@/components/mainpagestu'
 import datashow from '@/components/datashow'
 import stutext from '@/components/mainstu/stutext'
+import faceimportrec2 from '@/components/mainstu/faceimportrec2'
 import namerec from '@/components/mainstu/namerec'
 import teaclass from '@/components/maintea/teaclass'
 import classdetail from '@/components/maintea/classdetail'
+import teaclass2 from '@/components/maintea/teaclass2'
+import classdetail2 from '@/components/maintea/classdetail2'
+import stuclass from '@/components/maintea/stuclass'
+import stuclassdetail from '@/components/maintea/stuclassdetail'
+import classshow from '@/components/maintea/classshow'
+import classshowdet from '@/components/maintea/classshowdet'
+
+
+
 
 Vue.prototype.$router = Router
 
@@ -47,16 +57,7 @@ export default new Router({
       path:'/mainpage',
       name:'mainpage',
       component:mainpage,
-      children:[{
-        path:'/faceimportrec',
-        name:'faceimportrec',
-        component:faceimportrec
-        },
-        {
-          path:'/onlinerec',
-          name:'onlinerec',
-          component:onlinerec
-        },
+      children:[
         {
           path:'/stuinfo',
           name:'stuinfo',
@@ -81,6 +82,36 @@ export default new Router({
           path:'/classdetail',
           name:'classdetail',
           component:classdetail
+        },
+        {
+          path:'/classdetail2',
+          name:'classdetail2',
+          component:classdetail2
+        },
+        {
+          path:'/teaclass2',
+          name:'teaclass2',
+          component:teaclass2
+        },
+        {
+          path:'/stuclass',
+          name:'stuclass',
+          component:stuclass
+        },
+        {
+          path:'/stuclassdetail',
+          name:'stuclassdetail',
+          component:stuclassdetail
+        },
+        {
+          path:'/classshow',
+          name:'classshow',
+          component:classshow
+        },
+        {
+          path:'/classshowdet',
+          name:'classshowdet',
+          component:classshowdet
         },
       ]
     },
@@ -109,6 +140,17 @@ export default new Router({
         name:'namerec',
         component:namerec
       },
+      {
+        path:'/faceimportrec',
+        name:'faceimportrec',
+        component:faceimportrec
+      },
+      {
+        path:'/faceimportrec2',
+        name:'faceimportrec2',
+        component:faceimportrec2
+      },
+      
     ]
     },
     

@@ -5,27 +5,29 @@
      :router="true"
     >
       <el-submenu index="1">
-        <template slot="title"><i class="el-icon-message"></i>人脸点名识别</template>
+        <template slot="title"><i class="el-icon-upload2"></i>学生上传</template>
         <el-menu-item-group>
-          <el-menu-item index="faceimportrec" >人脸导入识别</el-menu-item>
-          <el-menu-item index="onlinerec">视频在线识别</el-menu-item>
-          <el-menu-item index="mynaming">我的点名</el-menu-item>
+          <el-menu-item index="teaclass">随机点名</el-menu-item>
         </el-menu-item-group> 
       </el-submenu>
       <el-submenu index="2">
-        <template slot="title"><i class="el-icon-menu"></i>学生点名管理</template>
+        <template slot="title"><i class="el-icon-upload"></i>老师上传</template>
         <el-menu-item-group>
-          <el-menu-item index="stuinfo">学生信息查看</el-menu-item>
-          <el-menu-item index="systext">系统说明</el-menu-item>
-          <el-menu-item index="datashow">数据展示</el-menu-item>
+          <el-menu-item index="teaclass2">人脸识别</el-menu-item>
+          <el-menu-item index="stuclass">照片录入</el-menu-item>
         </el-menu-item-group>
       </el-submenu>
       <el-submenu index="3">
-        <template slot="title"><i class="el-icon-bangzhu"></i>学生自主点名</template>
+        <template slot="title"><i class="el-icon-s-data"></i>点名记录</template>
         <el-menu-item-group>
-          <el-menu-item index="teaclass">随机点名</el-menu-item>
-          <el-menu-item index="systext">系统说明</el-menu-item>
           <el-menu-item index="datashow">数据展示</el-menu-item>
+          <el-menu-item index="classshow">班级情况</el-menu-item>
+        </el-menu-item-group>
+      </el-submenu>
+      <el-submenu index="4">
+        <template slot="title"><i class="el-icon-bangzhu"></i>系统管理</template>
+        <el-menu-item-group>
+          <el-menu-item index="systext">系统说明</el-menu-item>
         </el-menu-item-group>
       </el-submenu>
     </el-menu>

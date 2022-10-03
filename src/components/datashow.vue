@@ -12,20 +12,20 @@
         let myEchart = this.$echarts.init(document.getElementById("main"));
         let option = {
           title:{
-            text:"Vue中使用Echarts小练习"
+            text:"点名情况"
           },
           tooltip:{},
           legend:{
-            data:["销量"]
+            data:["人数"]
           },
           xAxis:{
-            data: ["苹果","香蕉","橘子","葡萄",]
+            data: ["高级程序编程","java","python"]
           },
           yAxis:{},
           series:[{
-            name:'销量',
+            name:'人数',
             type:"bar",
-            data:[50,60,45,30,]
+            data:[50,60,45]
           }]
         };
         myEchart.setOption(option);
