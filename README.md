@@ -13,4 +13,5 @@ npm install
 ```
 npm run serve
 ```
+项目后端地址:https://github.com/livass/face_naming_system_serve
 
